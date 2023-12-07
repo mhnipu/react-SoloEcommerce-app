@@ -6,9 +6,9 @@ import Tooltip from '@mui/material/Tooltip';
 const Product = ({ product }) => {
   return (
     // Wrapping the content in a React Router Link component, though the 'to' attribute is missing here
-    <Link to={`/products/${product.id}`}>
+    <Link to={`/product/${product.id}`}>
       {/* Container div for the product */}
-      <div className="grad w-full h-[362px] group rounded-xl overflow-hidden relative mb-8">
+      <div className="grad w-full h-[340px] group rounded-xl overflow-hidden relative mb-8">
         {/* Checking if the product has an attribute 'isNew' to display a 'new' label */}
         {product.attributes.isNew ? (
           <div className="absolute bg-accent text-primary text-[10px] font-extrabold uppercase top-2 right-2 px-2 rounded-full z-10">
@@ -43,7 +43,6 @@ const Product = ({ product }) => {
           <div className="text-lg text-accent">
             ${product.attributes.price}
           </div>
-
         </div>
       </div>
     </Link>

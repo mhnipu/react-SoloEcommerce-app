@@ -10,7 +10,7 @@ import { CartContext } from '../context/CartContext';
 
 const Header = () => {
   // Cart context and state for mobile category navigation
-  const { isOpen, setIsOpen } = useContext(CartContext);
+  const { isOpen, setIsOpen, itemsAmount } = useContext(CartContext);
   const [catNavMobile, setCatnavMobile] = useState(false);
 
   return (
@@ -46,10 +46,10 @@ const Header = () => {
             <div onClick={() => setIsOpen(!isOpen)} className="relative cursor-pointer">
               <ShoppingBagOutlinedIcon fontSize='large' />
               {/* Cart items count */}
-              <div className='bg-accent text-primary absolute w-[18px] h-[18px] rounded-full top-5 -right-1 text-[13px] flex justify-center items-center font-bold tracking-[-0.1em]'>2</div>
+              <div className='bg-accent text-primary absolute w-[18px] h-[18px] rounded-full top-5 -right-1 text-[13px] flex justify-center items-center font-bold tracking-[-0.1em]'>{itemsAmount}</div>
             </div>
             {/* Cart - visible on mobile when cart is opened */}
-            <div className={`${isOpen ? 'right-0' : '-right-full'} shadow-xl fixed top-0 bottom-0 w-full z-10 md:max-w-[500px] transition-all duration-500 backDrop`}>
+            <div className={`${isOpen ? 'right-0' : '-right-full'} shadow-xl fixed top-0 bottom-0 w-full z-10 md:max-w-[500px] lg:w-[400px] transition-all duration-500 backDrop`}>
               <Cart />
             </div>
           </div>

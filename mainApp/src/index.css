@@ -32,7 +32,7 @@
   }
 
   .backDrop {
-    @apply backdrop-blur-2xl bg-opacity-80
+    @apply backdrop-blur-xl bg-opacity-80
   }
 
   .blur {
