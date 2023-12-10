@@ -12,6 +12,7 @@ const CartProvider = ({ children }) => {
     }, 0);
     setItemsAmount(amount);
   }, [cart]);
+
   const addToCart = (item, id) => {
     const itemID = parseInt(id);
     const newItem = { ...item[0], amount: 1 };
@@ -34,12 +35,64 @@ const CartProvider = ({ children }) => {
     }
     setIsOpen(true);
   };
+
   const removeFromCart = (id) => {
     const newCart = cart.filter((item) => {
       return item.id !== id;
     });
     setCart(newCart);
   };
+
+  // const handleInput = (e, id) => {
+  //   const value = parseInt(e.target.value);
+  //   const cartItem = cart.find((item) => {
+  //     return item.id === id
+  //   });
+  //   if (cartItem) {
+  //     const newCart = cart.map(item => {
+  //       if (item.id === id) {
+  //         if (isNaN(value)) {
+  //           setAmount(1)
+  //           return { ...item, amount: 1 }
+  //         } else {
+  //           setAmount(value)
+  //           return { ...item, amount: value }
+  //         }
+  //       } else {
+  //         return item
+  //       }
+  //     });
+  //     setCart(newCart)
+  //   }
+  //   setIsOpen(true);
+  //   console.log(cart);
+  // };
+
+
+  const handleInput = (e, id) => {
+    const value = parseInt(e.target.value);
+
+    const newCart = cart.map(item => {
+      if (item.id === id) {
+        if (!isNaN(value) && value >= 1) {
+          setAmount(value)
+          return { ...item, amount: value };
+        } else {
+          setAmount(1)
+          return { ...item, amount: 1 };
+        }
+      }
+      return item;
+    });
+
+    setCart(newCart);
+    setIsOpen(true);
+    console.log(cart);
+  };
+
+
+
+
   return (
     <CartContext.Provider
       value={{
@@ -49,6 +102,7 @@ const CartProvider = ({ children }) => {
         cart,
         removeFromCart,
         itemsAmount,
+        handleInput
       }}
     >
       {children}
