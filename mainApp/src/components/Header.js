@@ -33,7 +33,6 @@ const Header = () => {
           <Link to={'/'}>
             <img src={Logo} alt="" />
           </Link>
-
           {/* SearchForm - visible on desktop */}
           <div className='hidden w-full xl:flex xl:max-w-[734px]'>
             <SearchForm />

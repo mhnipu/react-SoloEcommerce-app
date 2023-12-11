@@ -11,14 +11,14 @@ const CartItem = ({ item }) => {
   return (
     <div className='flex gap-x-8'>
       <Link to={`product/${item.id}`} className='w-[100px] h-[100px] Hover'>
-        <img src={`http://localhost:1337${item.attributes.image.data.attributes.url}`} alt="" />
+        <img src={`http://localhost:1337${item.attributes.image.data.attributes.url}`} alt="" className='w-auto h-auto ' />
       </Link>
       <div className="flex-1">
         <div className="flex gap-x-4 mb-2">
           <Link to={`product/${item.id}`}>
             <Tooltip title={item.attributes.title} placement="top-end" arrow>
               <div className="text-[15px]">
-                {item.attributes.title.substring(0, 35)}. . .
+                {item.attributes.title.substring(0, 23)}. . .
               </div>
             </Tooltip>
           </Link>
@@ -30,14 +30,14 @@ const CartItem = ({ item }) => {
             ></i>
           </div>
         </div>
-        <div className="flex items-center gap-x-12">
-          <div className='flex gap-x-4 mb-2'>
+        <div className="flex gap-x-6">
+          <div className='flex gap-x-4 mb-0 items-center'>
             <Qty item={item} />
           </div>
-          <div className="text-accent text-lg">${item.attributes.price * item.amount}</div>
+          <div className="text-accent text-xl items-end">${item.attributes.price * item.amount}</div>
         </div>
         <div>
-          <span className="text-accent text-sm">
+          <span className="text-accent text-xs">
             ${item.attributes.price}
           </span>
           <span className='text-sm text-gray-300'>

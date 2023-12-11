@@ -19,6 +19,8 @@ const ProductDetails = () => {
     return <div>No data found</div>;
   }
   const categoryTitle = data[0].attributes.categories.data[0].attributes.title;
+
+
   return (
     <div className='mb-16 pt-44 lg:pt-[30px] xl:pt-0'>
       <div className='container mx-auto'>
@@ -40,7 +42,6 @@ const ProductDetails = () => {
               <div className='text-2xl text-accent font-semibold'>${data[0].attributes.price}</div>
               <button onClick={() => addToCart(data, id)} className="btn btn-accent Hover"> Add to Cart</button>
             </div>
-
           </div>
         </div>
         {/* Render your RelatedProducts component */}

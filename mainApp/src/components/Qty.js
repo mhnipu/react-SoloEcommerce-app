@@ -1,91 +1,57 @@
+
+
+
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
-const Qty = ({ item }) => {
-  const handleChange = (e) => {
-    handleInput(e, item.id); // Pass the item ID to handleInput
-  };
-  const { handleInput } = useContext(CartContext)
-  return <div className='flex gap-x-6 items-center'>
-    {item.amount >= 1 ? (
-      <select
-        value={item.amount}
-        onChange={handleChange} // Add onChange event for select input
-        className='p-2 rounded-lg w-[100px] outline-none h-10 input'
-      >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10+</option>
-      </select>
-    ) : (
-      <input
-        value={item.amount}
-        // Add onChange event for input field
-        onBlur={(e) => handleInput(e, item.id)}
-        type="text"
-        className="text-gray-50 placeholder:text-gray-300 h-10 rounded-md p-4 w-[100px] input"
-        placeholder={`${item.amount}`}
-      />
-    )}
 
-  </div>;
+const Qty = ({ item }) => {
+  const { handleSelect, handleInput, addToCart, decreaseFromCart } = useContext(CartContext);
+
+  const handleAmountChange = (changeType) => {
+    if (changeType === 'inc') {
+      addToCart(item, item.id);
+    } else if (changeType === 'dec') {
+      decreaseFromCart(item.id); // Pass item ID to removeFromCart
+    }
+  };
+
+  const options = [];
+  for (let i = 1; i <= 1000; i++) {
+    options.push(<option key={i} value={i}>{i}</option>);
+  }
+
+  return (
+    <div className='flex gap-x-2 items-center'>
+      {item.amount <= 1000 ? (
+        <div className='flex flex-row  gap-x-2'>
+          <select
+            onChange={(e) => handleSelect(e, item.id)}
+            value={item.amount}
+            className='p-2 rounded-md w-[80px] outline-none h-auto input hover:text-accent transition-all duration-500 cursor-pointer border border-gray-700'
+          >
+            {options}
+          </select>
+          <div className="flex flex-col justify-center items-center ">
+            <button onClick={() => handleAmountChange('inc')} className="px-2 rounded-md hover:bg-accent hover:text-black hover:transition-all duration-300 text-gray-200 mb-1 bg-[#1d1f23] border border-gray-700">+</button>
+            <button onClick={() => handleAmountChange('dec')} className="px-2 rounded-md hover:bg-accent hover:text-black hover:transition-all duration-300 text-gray-200  bg-[#1d1f23] border border-gray-700">-</button>
+          </div>
+        </div>
+
+      ) : (
+        <input
+          onBlur={(e) => handleInput(e, item.id)}
+          value={item.amount}
+          type="text"
+          className="text-gray-50 placeholder:text-gray-300 h-10 rounded-md p-4 w-[100px] input border border-gray-400"
+          placeholder={`${item.amount}`}
+        />
+      )}
+    </div>
+  );
 };
 
 export default Qty;
 
 
-// import React, { useState, useEffect } from 'react';
 
-// const Qty = ({ item }) => {
 
-//   const [selectedAmount, setSelectedAmount] = useState(item.amount > 1000 ? '1000+' : item.amount.toString());
-
-//   // Update the selectedAmount when item.amount changes
-//   useEffect(() => {
-//     setSelectedAmount(item.amount > 1000 ? '1000+' : item.amount.toString());
-//   }, [item.amount]);
-
-//   const handleAmountChange = (newValue) => {
-//     const newAmount = newValue === 'inc' ? parseInt(selectedAmount) + 1 : parseInt(selectedAmount) - 1;
-//     setSelectedAmount(newAmount <= 0 ? '1' : newAmount > 1000 ? '1000+' : newAmount.toString());
-//     // Handle any additional logic needed when the amount changes
-//   };
-
-//   return (
-//     <div className='flex gap-x-1 items-center'>
-//       {item.amount >= 1 ? (
-//         <>
-//           <select
-//             value={selectedAmount}
-//             className='p-2 rounded-md w-[80px] outline-none h-12 input'
-//             onChange={(e) => setSelectedAmount(e.target.value)}
-//           >
-//             {Array.from({ length: 1000 }, (_, index) => index + 1).map((value) => (
-//               <option key={value} value={value.toString()}>
-//                 {value}
-//               </option>
-//             ))}
-//           </select>
-//           <div className="flex flex-col justify-center items-center ">
-//             <button onClick={() => handleAmountChange('inc')} className="px-2 rounded-md hover:bg-accent hover:text-black hover:transition-all duration-300 text-gray-200 mb-1 bg-[#1d1f23]">+</button>
-//             <button onClick={() => handleAmountChange('dec')} className="px-2 rounded-md hover:bg-accent hover:text-black hover:transition-all duration-300 text-gray-200  bg-[#1d1f23]">-</button>
-//           </div>
-//         </>
-//       ) : (
-//         <input
-//           type="text"
-//           className="text-gray-50 placeholder:text-gray-300 h-10 rounded-md p-4 w-[100px] input"
-//           placeholder={`${item.amount}`}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Qty;
