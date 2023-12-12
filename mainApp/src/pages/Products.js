@@ -8,9 +8,7 @@ import Product from '../components/Product';
 const Products = () => {
   const { addToCart } = useContext(CartContext);
   const { id } = useParams();
-  const { data } = useFetch(
-    `/products?populate=*&filters[categories][id][$eq]=${id}`
-  );
+  const { data } = useFetch(`/products?populate=*&filters[categories][id][$eq]=${id}`);
   const [title, setTitle] = useState(null);
 
   useEffect(() => {
@@ -30,8 +28,9 @@ const Products = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-[15px] md:gap-[30px] ">
               {data?.map((product) => (
-                <Product key={product.id} product={product} addToCart={addToCart} />
+                <Product key={product.id} product={product} addToCart={addToCart} /> // Pass addToCart as a prop to Product component
               ))}
+              
             </div>
           </main>
         </div>

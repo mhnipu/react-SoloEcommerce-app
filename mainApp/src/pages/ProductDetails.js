@@ -7,6 +7,7 @@ import { CartContext } from '../context/CartContext'
 const ProductDetails = () => {
   const { addToCart } = useContext(CartContext)
   const { id } = useParams(); // Ensure you invoke `useParams()` to get the `id` value
+  
   const { data, error, isLoading } = useFetch(`/products?populate=*&filters[id][$eq]=${id}`);
   if (isLoading) {
     return <div>Loading...</div>;

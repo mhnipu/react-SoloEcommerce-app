@@ -15,6 +15,7 @@ const Layout = () => {
     </div>
   )
 }
+
 const router = createBrowserRouter([
   {
     element: <Layout />,

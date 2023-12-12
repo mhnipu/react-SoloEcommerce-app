@@ -6,6 +6,9 @@ const CartProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [itemsAmount, setItemsAmount] = useState(0);
+  const [total, setTotal] = useState(0)
+  const [amount, setAmount] = useState(0)
+
 
   useEffect(() => {
     const amount = cart.reduce((a, c) => {
@@ -13,6 +16,14 @@ const CartProvider = ({ children }) => {
     }, 0);
     setItemsAmount(amount);
   }, [cart]);
+
+  useEffect(() => {
+    const total = cart.reduce((a, c) => {
+      return a + c.attributes.price * c.amount
+    }, 0)
+    setTotal(total);
+  }, [cart])
+
 
   const addToCart = (item, id) => {
     const itemID = parseInt(id);
@@ -32,7 +43,7 @@ const CartProvider = ({ children }) => {
     }
     setIsOpen(true);
   };
-  
+
 
   const removeFromCart = (id) => {
     const newCart = cart.filter((item) => item.id !== id);
@@ -58,6 +69,10 @@ const CartProvider = ({ children }) => {
     setCart(newCart);
     setIsOpen(true);
   };
+
+
+
+
   const handleSelect = (e, id) => {
     const value = e.target.value;
     const newCart = cart.map((item) =>
@@ -65,6 +80,9 @@ const CartProvider = ({ children }) => {
     );
     setCart(newCart);
   };
+
+
+
 
   return (
     <CartContext.Provider
@@ -77,7 +95,8 @@ const CartProvider = ({ children }) => {
         itemsAmount,
         handleInput,
         handleSelect,
-        decreaseFromCart
+        decreaseFromCart,
+        total,
       }}
     >
       {children}

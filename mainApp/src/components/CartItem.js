@@ -8,17 +8,18 @@ import Qty from "../components/Qty"; // Update this path to your Qty component w
 const CartItem = ({ item }) => {
   const { removeFromCart } = useContext(CartContext);
 
+
   return (
     <div className='flex gap-x-8'>
       <Link to={`product/${item.id}`} className='w-[100px] h-[100px] Hover'>
         <img src={`http://localhost:1337${item.attributes.image.data.attributes.url}`} alt="" className='w-auto h-auto ' />
       </Link>
       <div className="flex-1">
-        <div className="flex gap-x-4 mb-2">
+        <div className="flex flex-row justify-between gap-x-4 mb-2">
           <Link to={`product/${item.id}`}>
             <Tooltip title={item.attributes.title} placement="top-end" arrow>
               <div className="text-[15px]">
-                {item.attributes.title.substring(0, 23)}. . .
+                {item.attributes.title.substring(0, 30)}. . .
               </div>
             </Tooltip>
           </Link>
