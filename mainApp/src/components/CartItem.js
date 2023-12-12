@@ -31,7 +31,7 @@ const CartItem = ({ item }) => {
           </div>
         </div>
         <div className="flex gap-x-6">
-          <div className='flex gap-x-4 mb-0 items-center'>
+          <div className='flex gap-x-6 mb-0 items-center'>
             <Qty item={item} />
           </div>
           <div className="text-accent text-xl items-end">${item.attributes.price * item.amount}</div>
