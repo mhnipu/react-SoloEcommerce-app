@@ -1,20 +1,14 @@
-// Product.js
-import React from 'react';
-import CartItem from './CartItem';
+/* Add this CSS to your stylesheets */
+.cart - items - scrollable {
+    /* Other styles */
+    overflow - y: scroll; /* Enable vertical scrollbar */
+    scrollbar - width: thin; /* For Firefox */
+    scrollbar - color: transparent transparent; /* For Firefox */
+    scrollbar - width: none; /* For WebKit-based browsers */
+    -ms - overflow - style: none; /* For Internet Explorer and Edge */
 
-const Product = ({ product }) => {
-    // Ensure product and its attributes are defined before passing to CartItem
-    if (!product || !product.attributes) {
-        return <div>No product data found</div>;
+  /* Hide scrollbar for WebKit-based browsers */
+  &:: -webkit - scrollbar {
+        display: none;
     }
-
-    return (
-        <div>
-            {/* Other product details */}
-            <CartItem product={product} />
-            {/* Other components or details */}
-        </div>
-    );
-};
-
-export default Product;
+}

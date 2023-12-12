@@ -39,9 +39,10 @@
     @apply backdrop-blur-2xl bg-opacity-80
   }
 }
+
 /* In your CSS file */
 .scroll-container {
-  max-height: calc(100vh - 150px);
+  max-height: calc(150vh - 150px);
   /* Set the maximum height */
   overflow-y: auto;
   /* Enable vertical scrolling */

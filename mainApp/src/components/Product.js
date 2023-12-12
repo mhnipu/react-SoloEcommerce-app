@@ -1,11 +1,16 @@
-import React, { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
 import Tooltip from '@mui/material/Tooltip';
-import { CartContext } from '../context/CartContext';
+// import { useContext } from 'react';
+// import { CartContext } from '../context/CartContext';
+// import useFetch from '../hooks/useFetch';
+// import { useParams } from 'react-router-dom'
 
-const Product = ({ product }) => {
-  const { addToCart } = useContext(CartContext);
 
+const Product = ({ product, onAddToCart }) => {
+  // const { id } = useParams();
+  // const { data } = useFetch(`/products?populate=*&filters[id][$eq]=${id}`);
+  // const { addToCart } = useContext(CartContext)
   if (!product || !product.attributes || !product.attributes.image || !product.attributes.image.data || !product.attributes.image.data.attributes) {
     return <div>No image found</div>;
   }
@@ -42,10 +47,12 @@ const Product = ({ product }) => {
         </Tooltip>
         <div className="flex flex-col justify-between text-accent">
           <div className='flex flex-col text-xl '>${product.attributes.price}</div>
-          <div className='flex flex-col'>
-            <button onClick={() => addToCart(product, product.id)} className="h-[35px] flex justify-center items-center rounded-[8px] px-10 py-[10px] text-sm uppercase font-bold hover:btn-accent bg-primary text-gray-400 Hover mt-2">
-              Add to Cart
-            </button>
+          <div className='flex flex-col '>
+            <Link to={`/product/${product.id}`}>
+              <button className="h-[35px] flex justify-center items-center rounded-[8px] px-10 py-[10px] text-sm uppercase font-bold hover:btn-accent bg-primary  text-accent mt-2 hover:transition-all duration-500 w-full">
+                Add to Cart
+              </button>
+            </Link>
           </div>
         </div>
       </div>
