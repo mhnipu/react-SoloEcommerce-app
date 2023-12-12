@@ -81,7 +81,9 @@ const CartProvider = ({ children }) => {
     setCart(newCart);
   };
 
-
+  const clearCart = () => {
+    setCart([]);
+  }
 
 
   return (
@@ -97,6 +99,7 @@ const CartProvider = ({ children }) => {
         handleSelect,
         decreaseFromCart,
         total,
+        clearCart
       }}
     >
       {children}

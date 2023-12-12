@@ -5,7 +5,7 @@ import CartItem from './CartItem';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
 const Cart = () => {
-  const { isOpen, setIsOpen, cart, total } = useContext(CartContext);
+  const { isOpen, setIsOpen, cart, total, clearCart } = useContext(CartContext);
   const sortedCart = [...cart].sort((a, b) => b.amount - a.amount);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Cart = () => {
           {
             cart.length >= 1 ?
               (<div className='flex flex-row justify-between mt-4'>
-                <button className='btn bg-primary text-accent hover:bg-accent-hover hover:text-primary transition-all duration-500 p-5 '>
+                <button onClick={clearCart} className='btn bg-primary text-accent hover:bg-accent-hover hover:text-primary transition-all duration-500 p-5 '>
                   Clear Cart
                 </button>
                 <button className='btn bg-primary text-accent hover:bg-accent-hover hover:text-primary transition-all duration-500 p-5 w-[60%]'>
