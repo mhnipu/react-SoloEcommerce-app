@@ -35,7 +35,6 @@ const sliderData = [
   // Add more dummy data as needed
 ];
 
-
 const MainSlider = ({ data }) => {
   const swiperRef = useRef(null);
 

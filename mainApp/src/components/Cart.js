@@ -3,9 +3,27 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { CartContext } from '../context/CartContext';
 import CartItem from './CartItem';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import { loadStripe } from '@stripe/stripe-js';
+import { request } from '../request';
 
 const Cart = () => {
   const { isOpen, setIsOpen, cart, total, clearCart } = useContext(CartContext);
+  const stripePromise = loadStripe('pk_test_51OMjjGAumcRMkPaqlDO6b1ax44MTzSgEFg5pF6u0lGaieI5D6xp8NKwUGEXPIoRiSCUxxZkQGyIFaCGLZDMvzzdX003OfBM1y5');
+
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+      const res = await request.post('/orders', {
+        cart,
+      });
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
   const sortedCart = [...cart].sort((a, b) => b.amount - a.amount);
 
   useEffect(() => {
@@ -56,7 +74,7 @@ const Cart = () => {
                 <button onClick={clearCart} className='btn bg-primary text-accent hover:bg-accent-hover hover:text-primary transition-all duration-500 p-5 '>
                   Clear Cart
                 </button>
-                <button className='btn bg-primary text-accent hover:bg-accent-hover hover:text-primary transition-all duration-500 p-5 w-[60%]'>
+                <button onClick={handlePayment} className='btn bg-primary text-accent hover:bg-accent-hover hover:text-primary transition-all duration-500 p-5 w-[60%]'>
                   Checkout
                   <ArrowForwardIosOutlinedIcon style={{ fontSize: '0.9rem' }} />
                 </button>

@@ -1,14 +1,15 @@
-/* Add this CSS to your stylesheets */
-.cart - items - scrollable {
-    /* Other styles */
-    overflow - y: scroll; /* Enable vertical scrollbar */
-    scrollbar - width: thin; /* For Firefox */
-    scrollbar - color: transparent transparent; /* For Firefox */
-    scrollbar - width: none; /* For WebKit-based browsers */
-    -ms - overflow - style: none; /* For Internet Explorer and Edge */
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Tooltip from '@mui/material/Tooltip';
 
-  /* Hide scrollbar for WebKit-based browsers */
-  &:: -webkit - scrollbar {
-        display: none;
-    }
-}
+const Product = ({ product, highlight }) => {
+    // ... existing code
+
+    return (
+        <div className={`grad w-full h-[380px] group rounded-xl overflow-hidden relative mb-8 ${highlight ? 'highlighted' : ''}`}>
+            {/* ... existing code */}
+        </div>
+    );
+};
+
+export default Product;

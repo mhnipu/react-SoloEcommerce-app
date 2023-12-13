@@ -57,3 +57,30 @@
   /* Hide the scrollbar for Webkit browsers */
   height: 0;
 }
+
+@keyframes blink-animation {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink-animation 2s infinite;
+  /* Set 'infinite' to loop the animation indefinitely */
+}
+
+/* Add a hover effect for the highlighted product */
+.highlighted:hover {
+  /* Define the styles to highlight the related product card */
+  /* For example: add a box shadow or change background color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Other styles */
+}

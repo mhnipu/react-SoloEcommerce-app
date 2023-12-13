@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import 'primeicons/primeicons.css';
 import Tooltip from '@mui/material/Tooltip';
 import { CartContext } from '../context/CartContext';
-import Qty from "../components/Qty"; // Update this path to your Qty component with Select
+import Qty from '../components/Qty'; // Update this path to your Qty component with Select
 
 const CartItem = ({ item }) => {
   const { removeFromCart } = useContext(CartContext);
-
 
   return (
     <div className='flex gap-x-8'>
@@ -31,8 +30,8 @@ const CartItem = ({ item }) => {
             ></i>
           </div>
         </div>
-        <div className="flex gap-x-6">
-          <div className='flex gap-x-6 mb-0 items-center'>
+        <div className="flex gap-x-6 items-center">
+          <div className='mb-0'>
             <Qty item={item} />
           </div>
           <div className="text-accent text-xl items-end">${item.attributes.price * item.amount}</div>
